@@ -7,10 +7,10 @@ const attachListeners = function attachRotatingCarouselListeners() {
   nextButton.addEventListener("click", move.moveNext);
   prevButton.addEventListener("click", move.movePrevious);
 
-  const circles = document.querySelectorAll('.circle');
+  const circles = document.querySelectorAll(".circle");
   circles.forEach((circle) => {
-    circle.addEventListener('click', move.moveToImage);
-  })
+    circle.addEventListener("click", move.moveToImage);
+  });
 };
 
 export default attachListeners;

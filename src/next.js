@@ -1,5 +1,9 @@
 import { init } from "./carouselData";
-import { increaseWidth, decreaseWidth, setWidthBasedOnCircle } from "./widthHandler";
+import {
+  increaseWidth,
+  decreaseWidth,
+  setWidthBasedOnCircle,
+} from "./widthHandler";
 import { render, renderNavigationCircles } from "./applyCarouselStyle";
 
 const carouselMover = function createCarouselImageSlider(initialWidth = 400) {
@@ -29,7 +33,7 @@ const carouselMover = function createCarouselImageSlider(initialWidth = 400) {
     const index = Array.from(circle.parentNode.children).indexOf(circle);
     currentWidth = setWidthBasedOnCircle(slideWidth, index);
     render(currentWidth, carousel);
-  }
+  };
 
   return {
     moveNext,

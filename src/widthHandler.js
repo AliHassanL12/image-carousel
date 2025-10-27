@@ -30,8 +30,17 @@ const setMaxWidth = function setMaxWidth(width, numberOfImages) {
   return width * (numberOfImages - 1);
 };
 
-const setWidthBasedOnCircle = function setWidthBasedOnCircle(slideWidth, indexOfCircle) {
+const setWidthBasedOnCircle = function setWidthBasedOnCircle(
+  slideWidth,
+  indexOfCircle,
+) {
   return slideWidth * indexOfCircle;
-}
+};
 
-export { increaseWidth, decreaseWidth, checkWidth, setMaxWidth, setWidthBasedOnCircle };
+export {
+  increaseWidth,
+  decreaseWidth,
+  checkWidth,
+  setMaxWidth,
+  setWidthBasedOnCircle,
+};
