@@ -1,4 +1,4 @@
 import "./css/styles.css";
-import carouselMover from "./next";
+import attachListeners from "./eventAttacher";
 
-const move = carouselMover();
+attachListeners();

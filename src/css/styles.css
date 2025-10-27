@@ -12,11 +12,46 @@ img {
   height: 300px;
   background-color: aquamarine;
   position: relative;
-  right: 1200px;
+  right: 0;
 }
 
 .container-div {
   width: 400px;
   height: 300px;
   overflow: hidden;
+  position: relative;
+}
+
+button,
+.navigation-circles {
+  position: absolute;
+  z-index: 1;
+}
+
+button.next {
+  right: 0px;
+}
+
+button.next,
+button.prev {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+button.prev {
+  left: 0;
+}
+
+.navigation-circles {
+  display: flex;
+  gap: 5px;
+  color: white;
+  font-size: 1.1rem;
+  bottom: 0px;
+  right: 50%;
+  transform: translateX(50%);
+}
+
+.circle {
+  cursor: pointer;
 }

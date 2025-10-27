@@ -1,51 +1,43 @@
-const carouselMover = function createCarouselImageSlider() {
-  const SLIDE_WIDTH = 400;
-  let currentWidth = 0;
-  const min = 0;
-  const setMaxWidth = function setMaxWidth() {
-    const carousel = document.querySelector(".carousel");
-    const numberOfChildren = carousel.childElementCount;
-    return SLIDE_WIDTH * (numberOfChildren - 1);
-  };
+import { init } from "./carouselData";
+import { increaseWidth, decreaseWidth, setWidthBasedOnCircle } from "./widthHandler";
+import { render, renderNavigationCircles } from "./applyCarouselStyle";
 
-  const max = setMaxWidth();
-  const checkWidth = function checkWidthWithinLimits() {
-    const isMax = currentWidth === max;
-    const isMin = currentWidth === min;
-    return { isMax, isMin };
-  };
-
-  const increaseWidth = function increaseCurrentWidth() {
-    const { isMax } = checkWidth();
-    if (!isMax) return currentWidth += SLIDE_WIDTH;
-    currentWidth = min;
-  };
-
-  const decreaseWidth = function decreaseCurrentWidth() {
-    const { isMin } = checkWidth();
-    if (!isMin) return currentWidth -= SLIDE_WIDTH;
-    currentWidth = max;
-  };
-
-  const applyRightStyle = function applyStyleToCarousel() {
-    const carousel = document.querySelector(".carousel");
-    carousel.style.right = `${currentWidth}px`;
-  };
+const carouselMover = function createCarouselImageSlider(initialWidth = 400) {
+  const carousel = document.querySelector(".carousel");
+  const numberOfImages = carousel.childElementCount;
+  renderNavigationCircles(numberOfImages);
+  const {
+    slideWidth,
+    max,
+    min,
+    currentWidth: initialWidthValue,
+  } = init(initialWidth, numberOfImages);
+  let currentWidth = initialWidthValue;
 
   const moveNext = function moveToNextCarouselImage() {
-    increaseWidth();
-    applyRightStyle();
+    currentWidth = increaseWidth(currentWidth, slideWidth, max, min);
+    render(currentWidth, carousel);
   };
 
   const movePrevious = function moveToPreviousCarouselImage() {
-    decreaseWidth();
-    applyRightStyle();
+    currentWidth = decreaseWidth(currentWidth, slideWidth, max, min);
+    render(currentWidth, carousel);
   };
+
+  const moveToImage = function jumpToCorrespondingImage(event) {
+    const circle = event.target;
+    const index = Array.from(circle.parentNode.children).indexOf(circle);
+    currentWidth = setWidthBasedOnCircle(slideWidth, index);
+    render(currentWidth, carousel);
+  }
 
   return {
     moveNext,
     movePrevious,
+    moveToImage,
   };
 };
 
-export default carouselMover;
+const move = carouselMover();
+
+export default move;
