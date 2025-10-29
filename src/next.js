@@ -20,19 +20,19 @@ const carouselMover = function createCarouselImageSlider(initialWidth = 400) {
 
   const moveNext = function moveToNextCarouselImage() {
     currentWidth = increaseWidth(currentWidth, slideWidth, max, min);
-    render(currentWidth, carousel);
+    render(currentWidth, slideWidth, carousel);
   };
 
   const movePrevious = function moveToPreviousCarouselImage() {
     currentWidth = decreaseWidth(currentWidth, slideWidth, max, min);
-    render(currentWidth, carousel);
+    render(currentWidth, slideWidth, carousel);
   };
 
   const moveToImage = function jumpToCorrespondingImage(event) {
     const circle = event.target;
     const index = Array.from(circle.parentNode.children).indexOf(circle);
     currentWidth = setWidthBasedOnCircle(slideWidth, index);
-    render(currentWidth, carousel);
+    render(currentWidth, slideWidth, carousel);
   };
 
   return {

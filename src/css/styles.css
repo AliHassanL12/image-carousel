@@ -55,3 +55,7 @@ button.prev {
 .circle {
   cursor: pointer;
 }
+
+.current {
+  background-color: white;
+}
